@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <div>
       navbar {name}
-      create all essential page and 
+      
       </div>
   )
 }
