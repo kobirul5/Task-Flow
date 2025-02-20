@@ -6,6 +6,7 @@ export default function Navbar() {
   const {} = useContext(AuthContext)
 
   const links = <>
+  <li><Link to="/">Home</Link></li>
   <li><Link to="login">Login</Link></li>
   <li><Link to="signUp">Sign Up</Link></li>
   </>

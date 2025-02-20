@@ -7,10 +7,15 @@ export default function MainLayout() {
     return (
         <div>
             <Navbar />
-            <section className='min-h-screen'>
-                <Outlet />
-            </section>
-            <Footer/>
+            <div className='grid grid-cols-12'>
+                    <div className='col-span-2 bg-amber-600'>
+                        home
+                    </div>
+                <section className='min-h-screen col-span-10'>
+                    <Outlet />
+                </section>
+            </div>
+            {/* <Footer /> */}
         </div>
     )
 }
