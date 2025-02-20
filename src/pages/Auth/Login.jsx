@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import GoogleLogin from "../../components/GoogleLogin";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { loginUser } = useContext(AuthContext)
+  const navigate = useNavigate()
+
   const handleLogin = (e) => {
     e.preventDefault()
     const form = e.target;
@@ -12,6 +15,7 @@ export default function Login() {
     loginUser(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        navigate("/")
         console.log(user)
       })
       .catch((error) => {
@@ -27,8 +31,8 @@ export default function Login() {
           <h1 className="text-5xl font-bold">Login</h1>
 
         </div>
-        <div className="card  bg-base-100 w-full   shrink-0 shadow-2xl">
-          <form onSubmit={handleLogin} className="card-body w-full">
+        <div className="card  bg-base-100 w-full md:w-[500px]  shrink-0 shadow-2xl">
+          <form onSubmit={handleLogin} className="card-body pb-4 w-full">
             <fieldset className="fieldset">
               <label className="fieldset-label">Email</label>
               <input type="email" name="email" className="input w-full" placeholder="Email" />
@@ -38,7 +42,9 @@ export default function Login() {
               <button className="btn btn-neutral mt-4">Login</button>
             </fieldset>
           </form>
-          <GoogleLogin/>
+          <div className="p-8 pt-0 w-full flex flex-col gap-2">
+            <Link to={"/auth/signUp"}>You don't have any Account? <span className="text-green-700">Sing Up</span></Link>
+            <GoogleLogin/></div>
         </div>
       </div>
     </div>
