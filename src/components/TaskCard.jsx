@@ -1,54 +1,25 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import TaskModal from "./TaskModal";
+import useAxiosPublic from "../hooks/useAxios";
 
 export default function TaskCard({ task }) {
-
-
-  const { user } = useContext(AuthContext)
-  const [title, setTitle] = useState(task?.title || "");
-  const [description, setDescription] = useState(task?.description || "");
-  const [category, setCategory] = useState(task?.category || "To-Do");
-
+ const axiosPublic = useAxiosPublic()
   useEffect(() => {
     setTitle(task?.title || "");
     setDescription(task?.description || "");
     setCategory(task?.category || "To-Do");
   }, [task]);
 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (title.trim() === "") {
-      alert("Title is required");
-      return;
-    }
-    if (title.length > 50) {
-      alert("Title cannot exceed 50 characters");
-      return;
-    }
-    if (description.length > 200) {
-      alert("Description cannot exceed 200 characters");
-      return;
-    }
-    const email = user?.email
-    const newTask = {
-      title,
-      description,
-      category,
-      email,
-      timestamp: new Date().toISOString(),
-    };
-    axiosPublic.post("/task-post", newTask)
+const handleDelete =(id)=>{
+  axiosPublic.delete(`/task-delete/${id}`)
       .then(function (response) {
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
-  };
-
-
+}
 
   return (
     <div className="card bg-base-100 shadow-xl m-4">
@@ -60,7 +31,7 @@ export default function TaskCard({ task }) {
         <div className="card-actions justify-end">
           <button onClick={() => document.getElementById(`task-${task._id}`).showModal()} className="btn outline-1 bg-transparent outline-green-700">Edit</button>
           {/* <TaskModal task={task}/> */}
-          <button className="btn outline-1 bg-transparent outline-green-700">Delete</button>
+          <button onClick={()=>handleDelete(task?._id)} className="btn outline-1 bg-transparent outline-green-700">Delete</button>
         </div>
       </div>
 
