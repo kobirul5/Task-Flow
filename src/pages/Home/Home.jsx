@@ -29,7 +29,7 @@ export default function Home() {
          {
           toDoData?.map((task,idx)=> <TaskCard task={task}/>)
          }
-          <TaskModal />
+          {/* <TaskModal /> */}
         </div>
         <div className="bg-gray-300 w-full p-5 h-screen overflow-y-scroll scrollbar-hide">  
           {

@@ -2,12 +2,12 @@ import React, { useContext, useState } from 'react'
 import useAxiosPublic from '../hooks/useAxios';
 import { AuthContext } from '../provider/AuthProvider';
 
-export default function TaskModal() {
+export default function TaskModal({task}) {
     const axiosPublic = useAxiosPublic()
     const {user} = useContext(AuthContext)
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [category, setCategory] = useState("To-Do");
+    const [title, setTitle] = useState(task?.title ||"");
+    const [description, setDescription] = useState(task?.description || "");
+    const [category, setCategory] = useState(task?.category ||"To-Do");
 
 
     const handleSubmit = (e) => {
