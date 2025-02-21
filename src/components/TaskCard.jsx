@@ -1,17 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../provider/AuthProvider";
+
 import TaskModal from "./TaskModal";
 import useAxiosPublic from "../hooks/useAxios";
 
 export default function TaskCard({ task }) {
  const axiosPublic = useAxiosPublic()
-  useEffect(() => {
-    setTitle(task?.title || "");
-    setDescription(task?.description || "");
-    setCategory(task?.category || "To-Do");
-  }, [task]);
 
 const handleDelete =(id)=>{
+  
   axiosPublic.delete(`/task-delete/${id}`)
       .then(function (response) {
         console.log(response);

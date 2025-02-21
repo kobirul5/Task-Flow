@@ -10,12 +10,7 @@ export default function MainLayout() {
     return (
         <div>
             <Navbar />
-            {/* <div className='grid grid-cols-12'> */}
-                    {/* <div className='col-span-2 bg-amber-600'> */}
-                        {/* home */}
-                        {/* <button className='btn' onClick={()=> logOut()}>Log Out</button> */}
-                    {/* </div> */}
-                <section className='min-h-[calc(100vh-64px)] col-span-10'>
+                <section className=''>
                     <Outlet />
                 </section>
             {/* </div> */}
