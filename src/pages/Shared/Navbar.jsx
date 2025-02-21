@@ -1,12 +1,14 @@
 import { useContext } from "react"
 import { AuthContext } from "../../provider/AuthProvider"
 import { Link } from "react-router-dom"
+import AddTask from "../../components/AddTask"
 
 export default function Navbar() {
   const { user } = useContext(AuthContext)
 
   const links = <>
     <li><Link to="/">Home</Link></li>
+    <li><AddTask/></li>
     {
       user ? <button className='btn' onClick={()=> logOut()}>Log Out</button> : <>
         <li><Link to="/login">Login</Link></li>
@@ -23,7 +25,7 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+            class="menu menu-sm dropdown-content gap-2 bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
             {links}
 
           </ul>
@@ -31,7 +33,7 @@ export default function Navbar() {
         <a className="btn btn-ghost text-xl">Task Flow</a>
       </div>
       <div className="navbar-end hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1 gap-2">
           {links}
         </ul>
       </div>

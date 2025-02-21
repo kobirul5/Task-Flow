@@ -2,12 +2,12 @@ import React, { useContext, useState } from 'react'
 import useAxiosPublic from '../hooks/useAxios';
 import { AuthContext } from '../provider/AuthProvider';
 
-export default function TaskModal({task}) {
+export default function AddTaskModal() {
     const axiosPublic = useAxiosPublic()
     const {user} = useContext(AuthContext)
-    const [title, setTitle] = useState(task?.title ||"");
-    const [description, setDescription] = useState(task?.description || "");
-    const [category, setCategory] = useState(task?.category ||"To-Do");
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [category, setCategory] = useState("To-Do");
 
 
     const handleSubmit = (e) => {
@@ -32,7 +32,7 @@ export default function TaskModal({task}) {
             email,
             timestamp: new Date().toISOString(),
         };
-        axiosPublic.put(`/task-update/${task?._id}`, newTask)
+        axiosPublic.post("/task-post", newTask)
         .then(function (response) {
             console.log(response);
           })
@@ -44,7 +44,7 @@ export default function TaskModal({task}) {
 
     return (
         <div>{/* You can open the modal using document.getElementById('ID').showModal() method */}
-            <dialog id={`task-${task._id}`} className="modal">
+            <dialog id="my_modal_3" className="modal">
                 <div className="modal-box">
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}

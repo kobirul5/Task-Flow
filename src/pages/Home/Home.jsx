@@ -25,19 +25,17 @@ export default function Home() {
       <HomeNav />
       <div className="flex justify-between items-center">
         <div className="bg-gray-200 w-full p-5 h-screen overflow-y-scroll scrollbar-hide">
-          <AddTask></AddTask>
          {
-          toDoData?.map((task,idx)=> <TaskCard task={task}/>)
+          toDoData?.map((task,idx)=> <TaskCard key={idx} task={task}/>)
          }
-          {/* <TaskModal /> */}
         </div>
         <div className="bg-gray-300 w-full p-5 h-screen overflow-y-scroll scrollbar-hide">  
           {
-          inProgressData?.map((task,idx)=> <TaskCard task={task}/>)
+          inProgressData?.map((task,idx)=> <TaskCard key={idx} task={task}/>)
          } </div>
         <div className="bg-gray-200 w-full p-5 h-screen overflow-y-scroll scrollbar-hide"> 
         {
-          doneData?.map((task,idx)=> <TaskCard task={task}/>)
+          doneData?.map((task,idx)=> <TaskCard key={idx} task={task}/>)
          }
            </div>
       </div>
