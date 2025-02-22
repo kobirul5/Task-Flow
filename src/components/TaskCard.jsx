@@ -32,7 +32,11 @@ export default function TaskCard({ task }) {
           
         })
         .catch(function (error) {
-          console.log(error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `Something went wrong! ${error?.massage}`,
+          });
         });
       }
     });

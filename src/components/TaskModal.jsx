@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react'
 import useAxiosPublic from '../hooks/useAxios';
 import { AuthContext } from '../provider/AuthProvider';
+import Swal from 'sweetalert2';
 
-export default function TaskModal({task}) {
+export default function TaskModal({ task }) {
     const axiosPublic = useAxiosPublic()
-    const {user} = useContext(AuthContext)
-    const [title, setTitle] = useState(task?.title ||"");
+    const { user } = useContext(AuthContext)
+    const [title, setTitle] = useState(task?.title || "");
     const [description, setDescription] = useState(task?.description || "");
-    const [category, setCategory] = useState(task?.category ||"To-Do");
+    const [category, setCategory] = useState(task?.category || "To-Do");
 
 
     const handleSubmit = (e) => {
@@ -33,12 +34,23 @@ export default function TaskModal({task}) {
             timestamp: new Date().toISOString(),
         };
         axiosPublic.put(`/task-update/${task?._id}`, newTask)
-        .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+            .then(function (response) {
+                if (response.data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: "Updated Successfully!",
+                        icon: "success",
+                        draggable: true
+                    })
+                    document.getElementById(`task-${task._id}`).close()
+                };
+            })
+            .catch(function (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: `Something went wrong! ${error?.massage}`,
+                });
+            });
     };
 
 
@@ -105,7 +117,7 @@ export default function TaskModal({task}) {
                                 type="submit"
                                 className="w-full bg-green-900 border hover:border-green-900 font-semibold text-white p-2 rounded-lg hover:bg-transparent  transition duration-200 hover:text-black"
                             >
-                               Add Task
+                                Update Task
                             </button>
 
                             {/* ------------------------------------ */}

@@ -3,6 +3,7 @@ import { AuthContext } from "../../provider/AuthProvider"
 import { Link, useNavigate } from "react-router-dom"
 import GoogleLogin from "../../components/GoogleLogin"
 import useAxiosPublic from "../../hooks/useAxios"
+import Swal from "sweetalert2"
 
 export default function SignUp() {
   const { createUser } = useContext(AuthContext)
@@ -18,17 +19,25 @@ export default function SignUp() {
     const photoUrl = form.photoUrl.value;
     const password = form.password.value;
     const userData = {name, email, photoUrl}
-    console.log(email, password)
     createUser(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         if(user?.email) {
           axiosPublic.post("/task-user" , userData)
           .then((res)=>{
-            console.log(res)
+            Swal.fire({
+              icon: "success",
+              title: "Sign Up Success",
+            });
             navigate('/')
           })
-          .catch((error)=> console.log(error))
+          .catch((error)=> {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `Something went wrong! ${error?.massage}`,
+            });
+          })
         }
       })
       .catch((error) => {

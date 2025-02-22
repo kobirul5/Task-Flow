@@ -20,7 +20,9 @@ export default function Home() {
     axiosPublic
       .get("/all-tasks")
       .then((res) => setTasks(res.data))
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        // console.log(error)
+      });
   }, []);
 
   const toDoData = tasks?.filter((i) => i?.category === "To-Do");
@@ -37,19 +39,15 @@ export default function Home() {
     const newCategory = over.id
     if (active.id !== over.id) {
       const activeTask = tasks.find((task) => task._id === active.id);
-      console.log(activeTask, "dddddd", newCategory)
 
-    
       const updatedTasks = tasks.map((task) => {
         if (task._id === active.id) {
           return { ...task, category: over.id };
         }
-        console.log(task)
         return task;
       });
 
       setTasks(updatedTasks);
-      console.log(tasks)
 
       // ToDo: Update in backend
       const newTask = {
@@ -61,10 +59,10 @@ export default function Home() {
       }
       axiosPublic.put(`/task-update/${active.id}`, newTask)
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
         })
         .catch(function (error) {
-          console.log(error);
+          // console.log(error);
         });;
     }
   };

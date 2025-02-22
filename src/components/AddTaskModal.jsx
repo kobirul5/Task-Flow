@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react'
 import useAxiosPublic from '../hooks/useAxios';
 import { AuthContext } from '../provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 export default function AddTaskModal() {
     const axiosPublic = useAxiosPublic()
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("To-Do");
@@ -33,12 +34,24 @@ export default function AddTaskModal() {
             timestamp: new Date().toISOString(),
         };
         axiosPublic.post("/task-post", newTask)
-        .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+            .then(function (response) {
+                console.log(response.data.insertedId);
+                if (response.data.insertedId) {
+                    Swal.fire({
+                        title: "Added Successfully!",
+                        icon: "success",
+                        draggable: true
+                    })
+                    document.getElementById("my_modal_3").close()
+                };
+            })
+            .catch(function (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: `Something went wrong! ${error?.massage}`,
+                });
+            });
     };
 
 
@@ -105,7 +118,7 @@ export default function AddTaskModal() {
                                 type="submit"
                                 className="w-full bg-green-900 border hover:border-green-900 font-semibold text-white p-2 rounded-lg hover:bg-transparent  transition duration-200 hover:text-black"
                             >
-                               Add Task
+                                Add Task
                             </button>
 
                             {/* ------------------------------------ */}

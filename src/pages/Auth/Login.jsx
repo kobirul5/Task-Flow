@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import GoogleLogin from "../../components/GoogleLogin";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Login() {
   const { loginUser } = useContext(AuthContext)
@@ -16,11 +17,18 @@ export default function Login() {
       .then((userCredential) => {
         const user = userCredential.user;
         navigate("/")
-        console.log(user)
+        Swal.fire({
+                  icon: "success",
+                  title: "Login Success",
+                });
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage)
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `Something went wrong! ${errorMessage}`,
+        });
       });
   }
 
