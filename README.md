@@ -10,10 +10,10 @@ A Task Management Application where users can add, edit, delete, and reorder tas
 ---
 
 ## Technologies Used
-- **Frontend:**  React 
+- **Frontend:** Vite.js, React, react-beautiful-dnd  
 - **Backend:** Express.js, MongoDB  
 - **Authentication:** Firebase Authentication (Google Sign-In)  
-- **Real-Time Updates:** MongoDB  WebSockets  
+- **Real-Time Updates:** MongoDB Change Streams / WebSockets  
 
 ---
 
@@ -26,7 +26,28 @@ A Task Management Application where users can add, edit, delete, and reorder tas
 
 ---
 
+## Installation
+**1. Clone the repository:**  
+```bash
+git clone YOUR_REPO_LINK_HERE
+cd YOUR_REPO_FOLDER
+```
 
+**2. Install dependencies:**  
+- Frontend  
+```bash
+cd frontend
+npm install
+```
+
+- Backend  
+```bash
+cd backend
+npm install
+```
+
+**3. Configure environment variables:**  
+Create `.env` files in both frontend and backend folders with necessary configurations (e.g., Firebase credentials, MongoDB URI).
 
 **4. Run the application:**  
 - Frontend  
@@ -55,6 +76,3 @@ npm start
 
 
 
-
-
-[def]: https://task-flow-0.web.app/
