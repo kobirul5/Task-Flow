@@ -136,7 +136,7 @@ const Column = ({ id, title, children }) => {
     <div
       ref={setNodeRef}
 
-      className="bg-gray-200 w-full p-5 max-h-[calc(100vh-128px)] min-h-[calc(100vh-128px)] overflow-y-scroll scrollbar-hide"
+      className="bg-gray-200 w-full p-5 max-h-[calc(100vh-128px)] min-h-[calc(100vh-127px)] overflow-y-scroll scrollbar-hide"
     >
       <h2 className={`
         font-bold text-lg mb-3 btn w-full lg:hidden 

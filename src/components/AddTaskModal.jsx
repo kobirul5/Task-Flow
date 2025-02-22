@@ -43,7 +43,7 @@ export default function AddTaskModal() {
 
 
     return (
-        <div>{/* You can open the modal using document.getElementById('ID').showModal() method */}
+        <div>
             <dialog id="my_modal_3" className="modal">
                 <div className="modal-box">
                     <form method="dialog">
@@ -56,7 +56,7 @@ export default function AddTaskModal() {
                             onSubmit={handleSubmit}
                             className="max-w-lg mx-auto p-4 bg-white "
                         >
-                            <h2 className="text-2xl font-bold mb-4">
+                            <h2 className="text-2xl text-green-900 font-bold mb-4">
                                 Add New Task
                             </h2>
 
@@ -103,7 +103,7 @@ export default function AddTaskModal() {
 
                             <button
                                 type="submit"
-                                className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-200"
+                                className="w-full bg-green-900 border hover:border-green-900 font-semibold text-white p-2 rounded-lg hover:bg-transparent  transition duration-200 hover:text-black"
                             >
                                Add Task
                             </button>

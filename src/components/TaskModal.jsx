@@ -57,7 +57,7 @@ export default function TaskModal({task}) {
                             className="max-w-lg mx-auto p-4 bg-white "
                         >
                             <h2 className="text-2xl font-bold mb-4">
-                                Add New Task
+                                Update Task
                             </h2>
 
                             <div className="mb-4">
@@ -103,7 +103,7 @@ export default function TaskModal({task}) {
 
                             <button
                                 type="submit"
-                                className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-200"
+                                className="w-full bg-green-900 border hover:border-green-900 font-semibold text-white p-2 rounded-lg hover:bg-transparent  transition duration-200 hover:text-black"
                             >
                                Add Task
                             </button>

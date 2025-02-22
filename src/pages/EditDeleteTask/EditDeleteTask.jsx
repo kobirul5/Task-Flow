@@ -21,17 +21,17 @@ export default function EditDeleteTask() {
     return (
         <div>
             <HomeNav />
-            <div className="flex justify-between items-start flex-wrap lg:grid grid-cols-3">
-                <div className="bg-gray-200 w-full p-5 h-screen overflow-y-scroll scrollbar-hide">
+            <div className="flex justify-between items-start scrollbar-hide flex-wrap lg:grid grid-cols-3 overflow-y-scroll">
+                <div className="bg-gray-200 max-h-[calc(100vh-128px)] w-full p-5 h-screen overflow-y-scroll scrollbar-hide">
                     {
                         toDoData?.map((task, idx) => <TaskCard key={idx} task={task} />)
                     }
                 </div>
-                <div className="bg-gray-300 w-full p-5 h-screen overflow-y-scroll scrollbar-hide">
+                <div className="bg-gray-300 max-h-[calc(100vh-128px)] w-full p-5 h-screen overflow-y-scroll scrollbar-hide">
                     {
                         inProgressData?.map((task, idx) => <TaskCard key={idx} task={task} />)
                     } </div>
-                <div className="bg-gray-200 w-full p-5 h-screen overflow-y-scroll scrollbar-hide">
+                <div className="bg-gray-200 max-h-[calc(100vh-128px)] w-full p-5 h-screen overflow-y-scroll scrollbar-hide">
                     {
                         doneData?.map((task, idx) => <TaskCard key={idx} task={task} />)
                     }
