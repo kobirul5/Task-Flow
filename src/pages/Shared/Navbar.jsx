@@ -7,6 +7,8 @@ export default function Navbar() {
   const { user, logOut } = useContext(AuthContext)
 
   const links = <>
+    <li><Link className="btn border border-white bg-transparent text-white font-bold hover:bg-green-950 hover:text-white hover:border-0">Home</Link></li>
+    <li><Link to="/edit-delete" className="btn border border-white bg-transparent text-white font-bold hover:bg-green-950 hover:text-white hover:border-0">Edit And Delete Task</Link></li>
     <li><AddTask/></li>
     {
       user ? <button className='btn border border-white bg-transparent text-white font-bold hover:bg-green-950 hover:text-white hover:border-0' onClick={()=> logOut()}>Log Out</button> : <>

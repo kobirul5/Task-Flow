@@ -15,7 +15,6 @@ import {
 export default function Home() {
   const [tasks, setTasks] = useState([]);
   const axiosPublic = useAxiosPublic();
-  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     axiosPublic
@@ -83,7 +82,6 @@ export default function Home() {
             {toDoData.map((task) => (
               <DraggableItem key={task._id} id={task._id}>
                 <TaskCard 
-                
                 task={task} />
               </DraggableItem>
             ))}
@@ -115,6 +113,8 @@ const DraggableItem = ({ id, children, isHovering }) => {
   
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useDraggable({ id });
+
+
     const style = {
       transform: `translate3d(${transform?.x || 0}px, ${transform?.y || 0}px, 0)`,
       opacity: isDragging ? 0.5 : 1,

@@ -5,6 +5,7 @@ import Login from "../pages/Auth/Login";
 import SignUp from "../pages/Auth/SignUp";
 import PrivateRoute from "../privateRoute/PrivateRoute";
 import AuthLayout from "../layout/AuthLayout";
+import EditDeleteTask from "../pages/EditDeleteTask/EditDeleteTask";
 
 const router = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <PrivateRoute><Home/></PrivateRoute>
+            },
+            {
+                path: '/edit-delete',
+                element: <PrivateRoute><EditDeleteTask/></PrivateRoute>
             },
             
         ]
