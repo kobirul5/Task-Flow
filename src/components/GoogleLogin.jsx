@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../provider/AuthProvider'
-
+import { FcGoogle } from "react-icons/fc";
 export default function GoogleLogin() {
     const {googleLogin} = useContext(AuthContext)
 
@@ -18,7 +18,7 @@ export default function GoogleLogin() {
 
   return (
     <button onClick={handleGoogleLogin} className="btn">
-        Google
+        <FcGoogle /> Google
     </button>
   )
 }

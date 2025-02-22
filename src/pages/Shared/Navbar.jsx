@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import AddTask from "../../components/AddTask"
 
 export default function Navbar() {
-  const { user } = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext)
 
   const links = <>
     <li><AddTask/></li>
@@ -24,7 +24,7 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content gap-2 bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+            className="menu menu-sm dropdown-content gap-2 bg-green-800 rounded-box z-1 mt-3 w-52 p-2 shadow">
             {links}
 
           </ul>

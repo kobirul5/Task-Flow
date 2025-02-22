@@ -15,6 +15,7 @@ import {
 export default function Home() {
   const [tasks, setTasks] = useState([]);
   const axiosPublic = useAxiosPublic();
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     axiosPublic
@@ -81,7 +82,9 @@ export default function Home() {
           <Column id="To-Do" title="To-Do">
             {toDoData.map((task) => (
               <DraggableItem key={task._id} id={task._id}>
-                <TaskCard task={task} />
+                <TaskCard 
+                
+                task={task} />
               </DraggableItem>
             ))}
           </Column>
@@ -89,7 +92,7 @@ export default function Home() {
           <Column id="In Progress" title="In Progress">
             {inProgressData.map((task) => (
               <DraggableItem key={task._id} id={task._id}>
-                <TaskCard task={task} />
+                <TaskCard  task={task} />
               </DraggableItem>
             ))}
           </Column>
@@ -108,15 +111,15 @@ export default function Home() {
 }
 
 // Draggable Item Component
-const DraggableItem = ({ id, children }) => {
+const DraggableItem = ({ id, children, isHovering }) => {
+  
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useDraggable({ id });
-
-  const style = {
-    transform: `translate3d(${transform?.x || 0}px, ${transform?.y || 0}px, 0)`,
-    opacity: isDragging ? 0.5 : 1,
-    cursor: "grab"
-  };
+    const style = {
+      transform: `translate3d(${transform?.x || 0}px, ${transform?.y || 0}px, 0)`,
+      opacity: isDragging ? 0.5 : 1,
+      cursor: isHovering ? "default" : "grab", // Disable grab on hover
+    };
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>

@@ -57,7 +57,7 @@ export default function SignUp() {
               <label className="fieldset-label">Password</label>
               <input type="password" name="password" className="input w-full" placeholder="Password" />
               <div><a className="link link-hover">Forgot password?</a></div>
-              <button className="btn btn-neutral mt-4">Sign Up</button>
+              <button className="btn bg-green-900 text-whitel mt-4">Sign Up</button>
             </fieldset>
           </form>
           <div className="p-8 pt-0 w-full flex flex-col gap-2">
