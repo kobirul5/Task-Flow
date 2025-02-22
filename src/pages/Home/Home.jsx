@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import HomeNav from "../../components/HomeNav";
 import TaskCard from "../../components/TaskCard";
 import useAxiosPublic from "../../hooks/useAxios";
@@ -11,15 +11,23 @@ import {
   useSensor,
   useSensors
 } from "@dnd-kit/core";
+import { AuthContext } from "../../provider/AuthProvider";
+import useAllUsers from "../../hooks/useAllusers";
 
 export default function Home() {
   const [tasks, setTasks] = useState([]);
+  const {user} = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
+  const [allUser] = useAllUsers()
+  console.log(allUser)
 
   useEffect(() => {
     axiosPublic
       .get("/all-tasks")
-      .then((res) => setTasks(res.data))
+      .then((res) => {
+        const filterData = res.data?.filter((i) => i?.email === user?.email)
+        setTasks(filterData)
+      })
       .catch((error) => {
         // console.log(error)
       });

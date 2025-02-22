@@ -1,18 +1,23 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import HomeNav from "../../components/HomeNav";
 import TaskCard from "../../components/TaskCard";
 import useAxiosPublic from "../../hooks/useAxios";
+import { AuthContext } from "../../provider/AuthProvider";
 
 
 export default function EditDeleteTask() {
     const [tasks, setTasks] = useState([]);
     const axiosPublic = useAxiosPublic();
-    const [isHovering, setIsHovering] = useState(false);
+    const {user} = useContext(AuthContext)
+
 
     useEffect(() => {
         axiosPublic
             .get("/all-tasks")
-            .then((res) => setTasks(res.data))
+            .then((res) => {
+                const filterData = res.data?.filter((i) => i?.email === user?.email)
+                setTasks(filterData)
+            })
             .catch((error) => console.log(error));
     }, [tasks]);
     const toDoData = tasks?.filter((i) => i?.category === "To-Do");
