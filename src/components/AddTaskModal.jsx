@@ -35,7 +35,6 @@ export default function AddTaskModal() {
         };
         axiosPublic.post("/task-post", newTask)
             .then(function (response) {
-                console.log(response.data.insertedId);
                 if (response.data.insertedId) {
                     Swal.fire({
                         title: "Added Successfully!",
